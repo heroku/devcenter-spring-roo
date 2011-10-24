@@ -176,6 +176,7 @@ Create the app on the Cedar stack:
 
 Deploy your code:
 
+    :::term
     $ git push heroku master
     Counting objects: 211, done.
     Delta compression using up to 4 threads.
