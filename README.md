@@ -57,6 +57,15 @@ Configure your application to use Postgres as database instead of the in-memory 
     Updated SRC_MAIN_RESOURCES/META-INF/persistence.xml
     ~.web roo> 
 
+By default Hibernate will recreate the database schema every time the application is started.  This is not the behavior we want when running in production.  To fix this edit the `src/main/resources/META-INF/persistence.xml` file and change:
+
+    <property name="hibernate.hbm2ddl.auto" value="create"/>
+
+To:
+
+    <property name="hibernate.hbm2ddl.auto" value="update"/>
+
+
 ## Add the Heroku plugin
 
 The Spring Roo Heroku plugin automatically configures your application for Heroku deployment. This consists of the following steps:
