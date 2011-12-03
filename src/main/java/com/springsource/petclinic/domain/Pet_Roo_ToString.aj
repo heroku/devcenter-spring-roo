@@ -3,20 +3,13 @@
 
 package com.springsource.petclinic.domain;
 
-import java.lang.String;
+import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 privileged aspect Pet_Roo_ToString {
     
-    public String Pet.toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Id: ").append(getId()).append(", ");
-        sb.append("Name: ").append(getName()).append(", ");
-        sb.append("Owner: ").append(getOwner()).append(", ");
-        sb.append("Type: ").append(getType()).append(", ");
-        sb.append("Version: ").append(getVersion()).append(", ");
-        sb.append("Weight: ").append(getWeight()).append(", ");
-        sb.append("SendReminders: ").append(isSendReminders());
-        return sb.toString();
+    public java.lang.String Pet.toString() {
+        return ReflectionToStringBuilder.toString(this, ToStringStyle.SHORT_PREFIX_STYLE);
     }
     
 }

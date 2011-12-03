@@ -4,7 +4,6 @@
 package com.springsource.petclinic.domain;
 
 import com.springsource.petclinic.domain.Owner;
-import java.lang.String;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -60,7 +59,7 @@ privileged aspect OwnerDataOnDemand_Roo_DataOnDemand {
     }
     
     public void OwnerDataOnDemand.setEmail(Owner obj, int index) {
-        String email = "email_" + index;
+        String email = "foo" + index + "@bar.com";
         if (email.length() > 30) {
             email = email.substring(0, 30);
         }

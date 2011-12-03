@@ -7,11 +7,12 @@
     <version>0.1.0.BUILD-SNAPSHOT</version>
     <name>petclinic</name>
     <properties>
-        <roo.version>1.2.0.M1</roo.version>
-        <spring.version>3.0.6.RELEASE</spring.version>
         <aspectj.version>1.6.12.M2</aspectj.version>
-        <slf4j.version>1.6.1</slf4j.version>
+        <java.version>1.6</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <roo.version>1.2.0.RC1</roo.version>
+        <slf4j.version>1.6.2</slf4j.version>
+        <spring.version>3.0.6.RELEASE</spring.version>
     </properties>
     <repositories>
         <repository>
@@ -28,11 +29,6 @@
             <id>spring-roo-repository</id>
             <name>Spring Roo Repository</name>
             <url>http://spring-roo-repository.springsource.org/release</url>
-        </repository>
-    <repository>
-            <id>JBoss Repo</id>
-            <url>https://repository.jboss.org/nexus/content/repositories/releases</url>
-            <name>JBoss Repo</name>
         </repository>
     </repositories>
     <pluginRepositories>
@@ -57,7 +53,7 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.8.2</version>
+            <version>4.9</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -101,6 +97,11 @@
             <artifactId>flexjson</artifactId>
             <version>2.1</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.0.1</version>
+        </dependency>
         <!-- ROO dependencies -->
         <dependency>
             <groupId>org.springframework.roo</groupId>
@@ -125,12 +126,6 @@
             <artifactId>spring-test</artifactId>
             <version>${spring.version}</version>
             <scope>test</scope>
-            <exclusions>
-                <exclusion>
-                    <groupId>commons-logging</groupId>
-                    <artifactId>commons-logging</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
@@ -148,19 +143,14 @@
             <version>${spring.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-tx</artifactId>
-            <version>${spring.version}</version>
-        </dependency>
-        <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
-            <version>3.6.7.Final</version>
+            <version>3.6.8.Final</version>
         </dependency>
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-entitymanager</artifactId>
-            <version>3.6.7.Final</version>
+            <version>3.6.8.Final</version>
             <exclusions>
                 <exclusion>
                     <groupId>cglib</groupId>
@@ -221,12 +211,6 @@
             <groupId>commons-pool</groupId>
             <artifactId>commons-pool</artifactId>
             <version>1.5.4</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>commons-logging</groupId>
-                    <artifactId>commons-logging</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
         <dependency>
             <groupId>commons-dbcp</groupId>
@@ -238,18 +222,6 @@
                     <artifactId>commons-logging</artifactId>
                 </exclusion>
                 <exclusion>
-                    <groupId>commons-pool</groupId>
-                    <artifactId>commons-pool</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>xerces</groupId>
-                    <artifactId>xerces</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>xerces</groupId>
-                    <artifactId>xercesImpl</artifactId>
-                </exclusion>
-                <exclusion>
                     <groupId>xml-apis</groupId>
                     <artifactId>xml-apis</artifactId>
                 </exclusion>
@@ -257,25 +229,8 @@
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
-            <artifactId>spring-web</artifactId>
-            <version>${spring.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>commons-logging</groupId>
-                    <artifactId>commons-logging</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
             <version>${spring.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>commons-logging</groupId>
-                    <artifactId>commons-logging</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.springframework.webflow</groupId>
@@ -297,12 +252,6 @@
             <groupId>commons-fileupload</groupId>
             <artifactId>commons-fileupload</artifactId>
             <version>1.2.1</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>commons-logging</groupId>
-                    <artifactId>commons-logging</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
         <dependency>
             <groupId>javax.servlet.jsp.jstl</groupId>
@@ -371,15 +320,16 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>2.3.2</version>
                 <configuration>
-                    <source>1.6</source>
-                    <target>1.6</target>
-                    <encoding>UTF-8</encoding>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <encoding>${project.build.sourceEncoding}</encoding>
                 </configuration>
             </plugin>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>aspectj-maven-plugin</artifactId>
-                <version>1.2</version> <!-- NB: do use 1.3 or 1.3.x due to MASPECTJ-90 - wait for 1.4 -->
+                <version>1.2</version>
+                <!-- NB: do not use 1.3 or 1.3.x due to MASPECTJ-90 and do not use 1.4 due to declare parents issue  -->
                 <dependencies>
                     <!-- NB: You must use Maven 2.0.9 or above or these are ignored (see MNG-2972) -->
                     <dependency>
@@ -409,8 +359,8 @@
                             <artifactId>spring-aspects</artifactId>
                         </aspectLibrary>
                     </aspectLibraries>
-                    <source>1.6</source>
-                    <target>1.6</target>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
                 </configuration>
             </plugin>
             <plugin>
@@ -418,13 +368,13 @@
                 <artifactId>maven-resources-plugin</artifactId>
                 <version>2.5</version>
                 <configuration>
-                    <encoding>UTF-8</encoding>
+                    <encoding>${project.build.sourceEncoding}</encoding>
                 </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.8</version>
+                <version>2.9</version>
                 <configuration>
                     <printSummary>false</printSummary>
                     <redirectTestOutputToFile>true</redirectTestOutputToFile>
@@ -446,13 +396,14 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-deploy-plugin</artifactId>
-                <version>2.6</version>
+                <version>2.7</version>
             </plugin>
             <!-- IDE -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-eclipse-plugin</artifactId>
-                <version>2.7</version>  <!-- Note 2.8 does not work with AspectJ aspect path -->
+                <version>2.7</version>
+                <!-- Note 2.8 does not work with AspectJ aspect path -->
                 <configuration>
                     <downloadSources>true</downloadSources>
                     <downloadJavadocs>false</downloadJavadocs>
@@ -492,7 +443,7 @@
             <plugin>
                 <groupId>org.mortbay.jetty</groupId>
                 <artifactId>jetty-maven-plugin</artifactId>
-                <version>7.4.2.v20110526</version>
+                <version>8.0.1.v20110908</version>
                 <configuration>
                     <webAppConfig>
                         <contextPath>/${project.name}</contextPath>
@@ -502,7 +453,7 @@
         <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>selenium-maven-plugin</artifactId>
-                <version>2.0</version>
+                <version>2.1</version>
                 <configuration>
                 <browser>*firefox</browser>
                 <suite>src/main/webapp/selenium/test-suite.xhtml</suite>
@@ -513,7 +464,7 @@
                     <dependency>
                         <groupId>org.seleniumhq.selenium</groupId>
                         <artifactId>selenium-server</artifactId>
-                        <version>2.6.0</version>
+                        <version>2.9.0</version>
                     </dependency>
                 </dependencies>
             </plugin>

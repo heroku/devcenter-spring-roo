@@ -6,7 +6,7 @@ Sample code is available on [github](https://github.com/heroku/devcenter-spring-
 
 * Java, Maven, Git, the Heroku client, and Foreman (as described in the [basic Java quickstart](/java))
 * An installed version of [Postgres](http://www.postgresql.org/) to test locally
-* Basic knowledge of [Spring Roo](http://www.springsource.org/spring-roo) and an installed version  [1.2.0.M1](http://s3.amazonaws.com/dist.springframework.org/milestone/ROO/spring-roo-1.2.0.M1.zip) or later of the framework.
+* Basic knowledge of [Spring Roo](http://www.springsource.org/spring-roo) and an installed version  [1.2.0.RC1](http://s3.amazonaws.com/dist.springframework.org/milestone/ROO/spring-roo-1.2.0.RC1.zip) or later of the framework.
 
 ## Start the Roo Shell
 
@@ -18,7 +18,7 @@ Create a new directory for your application and start the Roo shell from inside 
        / __ \/ __ \/ __ \ 
       / /_/ / / / / / / / 
      / _, _/ /_/ / /_/ /  
-    /_/ |_|\____/\____/    1.2.0.M1 [rev 1fa252f]
+    /_/ |_|\____/\____/    1.2.0.RC1 [rev dcaa483]
 
 
     Welcome to Spring Roo. For assistance press TAB or type "hint" then hit ENTER.
@@ -66,7 +66,7 @@ To:
     <property name="hibernate.hbm2ddl.auto" value="update"/>
 
 
-## Add the Heroku plugin
+## Add the Heroku add-on
 
 The Spring Roo Heroku plugin automatically configures your application for Heroku deployment. This consists of the following steps:
 
@@ -74,28 +74,16 @@ The Spring Roo Heroku plugin automatically configures your application for Herok
 1. Modify the Spring context configuration to use the Heroku `DATABASE_URL` environment variable to set up the database connection.
 1. Add a Procfile containing the command used to start your application on Heroku
 
-To install the plugin, first perform a search:
+To install the plugin run the following from the Roo shell:
 
-    ~.web roo> addon search heroku
-    1 found, sorted by rank; T = trusted developer; R = Roo 1.2 compatible
-    ID T R DESCRIPTION -------------------------------------------------------------
-    01 Y Y 0.1.2.RELEASE Adds configuration for Heroku deployment
-    --------------------------------------------------------------------------------
-    [HINT] use 'addon info id --searchResultId ..' to see details about a search result
-    [HINT] use 'addon install id --searchResultId ..' to install a specific search result, or
-    [HINT] use 'addon install bundle --bundleSymbolicName TAB' to install a specific add-on version
-    ~.web roo> 
-
-Then install the plugin by referencing the search result:
-
-    ~.web roo> addon install id --searchResultId 1
+    ~.web roo> addon install bundle --bundleSymbolicName net.stsmedia.roo.addon.heroku
     Target resource(s):
     -------------------
-       addon-heroku (0.1.2.RELEASE)
-
+       addon-heroku (0.1.4.RELEASE)
+    
     Deploying...done.
-
-    Successfully installed add-on: addon-heroku [version: 0.1.2.RELEASE]
+    
+    Successfully installed add-on: addon-heroku [version: 0.1.4.RELEASE]
     [Hint] Please consider rating this add-on with the following command:
     [Hint] addon feedback bundle --bundleSymbolicName net.stsmedia.roo.addon.heroku --rating ... --comment "..."
     ~.web roo> 
@@ -108,12 +96,9 @@ Now execute the setup command to prepare your application for Heroku:
     Your project as been configured for Heroku deployment. 
     Please also add the following environment variables to your system:
     export DATABASE_URL=postgres://stewie:rupert@localhost/heroku
-
-    # NOTE: "REPO" MUST be the PHYSICAL location of the Maven jars (not dereferenced through a settings.xml file)
-    export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Versions/1.6.0/Home
-    (optional) export JAVA_OPTS='-Xmx1536m -XX:PermSize=256m -XX:MaxPermSize=256m'
-
-    Updated SRC_MAIN_RESOURCES/META-INF/spring/applicationContext.xml
+    
+    
+    Updated SPRING_CONFIG_ROOT/applicationContext.xml
     Updated ROOT/pom.xml [added plugin org.apache.maven.plugins:maven-dependency-plugin:2.3]
     Created ROOT/Procfile
     ~.web roo> 
@@ -125,7 +110,20 @@ Exit the Roo shell:
     ~.web roo> exit
     $ 
 
-Build the app:
+Set an environment variable to point to your local Postgres database (subsituting the username, password, and database name with the appropriate values:
+
+* On Linux/Mac
+
+        :::term
+        $ export DATABASE_URL=postgres://username:password@localhost/database
+
+* On Windows
+
+        :::term
+        $ set DATABASE_URL=postgres://username:password@localhost/database
+
+
+Build the app with Maven:
 
     :::term
     $ mvn package

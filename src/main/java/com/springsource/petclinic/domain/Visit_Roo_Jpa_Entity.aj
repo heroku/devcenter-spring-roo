@@ -3,8 +3,6 @@
 
 package com.springsource.petclinic.domain;
 
-import java.lang.Integer;
-import java.lang.Long;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,25 +17,25 @@ privileged aspect Visit_Roo_Jpa_Entity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
-    private Long Visit.id;
+    private java.lang.Long Visit.id;
     
     @Version
     @Column(name = "version")
-    private Integer Visit.version;
+    private java.lang.Integer Visit.version;
     
-    public Long Visit.getId() {
+    public java.lang.Long Visit.getId() {
         return this.id;
     }
     
-    public void Visit.setId(Long id) {
+    public void Visit.setId(java.lang.Long id) {
         this.id = id;
     }
     
-    public Integer Visit.getVersion() {
+    public java.lang.Integer Visit.getVersion() {
         return this.version;
     }
     
-    public void Visit.setVersion(Integer version) {
+    public void Visit.setVersion(java.lang.Integer version) {
         this.version = version;
     }
     

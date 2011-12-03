@@ -6,9 +6,6 @@ package com.springsource.petclinic.web;
 import com.springsource.petclinic.domain.Vet;
 import com.springsource.petclinic.reference.Specialty;
 import java.io.UnsupportedEncodingException;
-import java.lang.Integer;
-import java.lang.Long;
-import java.lang.String;
 import java.util.Arrays;
 import java.util.Collection;
 import javax.servlet.http.HttpServletRequest;
@@ -28,7 +25,7 @@ import org.springframework.web.util.WebUtils;
 privileged aspect VetController_Roo_Controller {
     
     @RequestMapping(method = RequestMethod.POST)
-    public String VetController.create(@Valid Vet vet, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
+    public java.lang.String VetController.create(@Valid Vet vet, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
         if (bindingResult.hasErrors()) {
             uiModel.addAttribute("vet", vet);
             addDateTimeFormatPatterns(uiModel);
@@ -40,14 +37,14 @@ privileged aspect VetController_Roo_Controller {
     }
     
     @RequestMapping(params = "form", method = RequestMethod.GET)
-    public String VetController.createForm(Model uiModel) {
+    public java.lang.String VetController.createForm(Model uiModel) {
         uiModel.addAttribute("vet", new Vet());
         addDateTimeFormatPatterns(uiModel);
         return "vets/create";
     }
     
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public String VetController.show(@PathVariable("id") Long id, Model uiModel) {
+    public java.lang.String VetController.show(@PathVariable("id") java.lang.Long id, Model uiModel) {
         addDateTimeFormatPatterns(uiModel);
         uiModel.addAttribute("vet", Vet.findVet(id));
         uiModel.addAttribute("itemId", id);
@@ -55,7 +52,7 @@ privileged aspect VetController_Roo_Controller {
     }
     
     @RequestMapping(method = RequestMethod.GET)
-    public String VetController.list(@RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
+    public java.lang.String VetController.list(@RequestParam(value = "page", required = false) java.lang.Integer page, @RequestParam(value = "size", required = false) java.lang.Integer size, Model uiModel) {
         if (page != null || size != null) {
             int sizeNo = size == null ? 10 : size.intValue();
             final int firstResult = page == null ? 0 : (page.intValue() - 1) * sizeNo;
@@ -70,7 +67,7 @@ privileged aspect VetController_Roo_Controller {
     }
     
     @RequestMapping(method = RequestMethod.PUT)
-    public String VetController.update(@Valid Vet vet, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
+    public java.lang.String VetController.update(@Valid Vet vet, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
         if (bindingResult.hasErrors()) {
             uiModel.addAttribute("vet", vet);
             addDateTimeFormatPatterns(uiModel);
@@ -82,14 +79,14 @@ privileged aspect VetController_Roo_Controller {
     }
     
     @RequestMapping(value = "/{id}", params = "form", method = RequestMethod.GET)
-    public String VetController.updateForm(@PathVariable("id") Long id, Model uiModel) {
+    public java.lang.String VetController.updateForm(@PathVariable("id") java.lang.Long id, Model uiModel) {
         uiModel.addAttribute("vet", Vet.findVet(id));
         addDateTimeFormatPatterns(uiModel);
         return "vets/update";
     }
     
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public String VetController.delete(@PathVariable("id") Long id, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
+    public java.lang.String VetController.delete(@PathVariable("id") java.lang.Long id, @RequestParam(value = "page", required = false) java.lang.Integer page, @RequestParam(value = "size", required = false) java.lang.Integer size, Model uiModel) {
         Vet vet = Vet.findVet(id);
         vet.remove();
         uiModel.asMap().clear();
@@ -113,15 +110,14 @@ privileged aspect VetController_Roo_Controller {
         uiModel.addAttribute("vet_employedsince_date_format", DateTimeFormat.patternForStyle("M-", LocaleContextHolder.getLocale()));
     }
     
-    String VetController.encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {
+    java.lang.String VetController.encodeUrlPathSegment(java.lang.String pathSegment, HttpServletRequest httpServletRequest) {
         String enc = httpServletRequest.getCharacterEncoding();
         if (enc == null) {
             enc = WebUtils.DEFAULT_CHARACTER_ENCODING;
         }
         try {
             pathSegment = UriUtils.encodePathSegment(pathSegment, enc);
-        }
-        catch (UnsupportedEncodingException uee) {}
+        } catch (UnsupportedEncodingException uee) {}
         return pathSegment;
     }
     

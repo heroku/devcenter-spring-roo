@@ -4,14 +4,13 @@
 package com.springsource.petclinic.domain;
 
 import com.springsource.petclinic.domain.Visit;
-import java.lang.String;
 import java.util.Date;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
 privileged aspect Visit_Roo_Finder {
     
-    public static TypedQuery<Visit> Visit.findVisitsByDescriptionAndVisitDate(String description, Date visitDate) {
+    public static TypedQuery<Visit> Visit.findVisitsByDescriptionAndVisitDate(java.lang.String description, Date visitDate) {
         if (description == null || description.length() == 0) throw new IllegalArgumentException("The description argument is required");
         if (visitDate == null) throw new IllegalArgumentException("The visitDate argument is required");
         EntityManager em = Visit.entityManager();
@@ -21,7 +20,7 @@ privileged aspect Visit_Roo_Finder {
         return q;
     }
     
-    public static TypedQuery<Visit> Visit.findVisitsByDescriptionLike(String description) {
+    public static TypedQuery<Visit> Visit.findVisitsByDescriptionLike(java.lang.String description) {
         if (description == null || description.length() == 0) throw new IllegalArgumentException("The description argument is required");
         description = description.replace('*', '%');
         if (description.charAt(0) != '%') {

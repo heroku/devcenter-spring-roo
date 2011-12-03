@@ -7,8 +7,6 @@ import com.springsource.petclinic.domain.Owner;
 import com.springsource.petclinic.domain.OwnerDataOnDemand;
 import com.springsource.petclinic.domain.Pet;
 import com.springsource.petclinic.reference.PetType;
-import java.lang.Float;
-import java.lang.String;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Iterator;

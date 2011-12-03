@@ -3,64 +3,63 @@
 
 package com.springsource.petclinic.domain;
 
-import java.lang.String;
 import java.util.Date;
 
 privileged aspect AbstractPerson_Roo_JavaBean {
     
-    public String AbstractPerson.getFirstName() {
+    public java.lang.String AbstractPerson.getFirstName() {
         return this.firstName;
     }
     
-    public void AbstractPerson.setFirstName(String firstName) {
+    public void AbstractPerson.setFirstName(java.lang.String firstName) {
         this.firstName = firstName;
     }
     
-    public String AbstractPerson.getLastName() {
+    public java.lang.String AbstractPerson.getLastName() {
         return this.lastName;
     }
     
-    public void AbstractPerson.setLastName(String lastName) {
+    public void AbstractPerson.setLastName(java.lang.String lastName) {
         this.lastName = lastName;
     }
     
-    public String AbstractPerson.getAddress() {
+    public java.lang.String AbstractPerson.getAddress() {
         return this.address;
     }
     
-    public void AbstractPerson.setAddress(String address) {
+    public void AbstractPerson.setAddress(java.lang.String address) {
         this.address = address;
     }
     
-    public String AbstractPerson.getCity() {
+    public java.lang.String AbstractPerson.getCity() {
         return this.city;
     }
     
-    public void AbstractPerson.setCity(String city) {
+    public void AbstractPerson.setCity(java.lang.String city) {
         this.city = city;
     }
     
-    public String AbstractPerson.getTelephone() {
+    public java.lang.String AbstractPerson.getTelephone() {
         return this.telephone;
     }
     
-    public void AbstractPerson.setTelephone(String telephone) {
+    public void AbstractPerson.setTelephone(java.lang.String telephone) {
         this.telephone = telephone;
     }
     
-    public String AbstractPerson.getHomePage() {
+    public java.lang.String AbstractPerson.getHomePage() {
         return this.homePage;
     }
     
-    public void AbstractPerson.setHomePage(String homePage) {
+    public void AbstractPerson.setHomePage(java.lang.String homePage) {
         this.homePage = homePage;
     }
     
-    public String AbstractPerson.getEmail() {
+    public java.lang.String AbstractPerson.getEmail() {
         return this.email;
     }
     
-    public void AbstractPerson.setEmail(String email) {
+    public void AbstractPerson.setEmail(java.lang.String email) {
         this.email = email;
     }
     

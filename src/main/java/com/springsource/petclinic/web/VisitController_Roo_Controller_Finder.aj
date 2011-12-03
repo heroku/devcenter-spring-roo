@@ -4,7 +4,6 @@
 package com.springsource.petclinic.web;
 
 import com.springsource.petclinic.domain.Visit;
-import java.lang.String;
 import java.util.Date;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.ui.Model;
@@ -15,37 +14,37 @@ import org.springframework.web.bind.annotation.RequestParam;
 privileged aspect VisitController_Roo_Controller_Finder {
     
     @RequestMapping(params = { "find=ByDescriptionAndVisitDate", "form" }, method = RequestMethod.GET)
-    public String VisitController.findVisitsByDescriptionAndVisitDateForm(Model uiModel) {
+    public java.lang.String VisitController.findVisitsByDescriptionAndVisitDateForm(Model uiModel) {
         addDateTimeFormatPatterns(uiModel);
         return "visits/findVisitsByDescriptionAndVisitDate";
     }
     
     @RequestMapping(params = "find=ByDescriptionAndVisitDate", method = RequestMethod.GET)
-    public String VisitController.findVisitsByDescriptionAndVisitDate(@RequestParam("description") String description, @RequestParam("visitDate") @DateTimeFormat(style = "M-") Date visitDate, Model uiModel) {
+    public java.lang.String VisitController.findVisitsByDescriptionAndVisitDate(@RequestParam("description") java.lang.String description, @RequestParam("visitDate") @DateTimeFormat(style = "M-") Date visitDate, Model uiModel) {
         uiModel.addAttribute("visits", Visit.findVisitsByDescriptionAndVisitDate(description, visitDate).getResultList());
         addDateTimeFormatPatterns(uiModel);
         return "visits/list";
     }
     
     @RequestMapping(params = { "find=ByDescriptionLike", "form" }, method = RequestMethod.GET)
-    public String VisitController.findVisitsByDescriptionLikeForm(Model uiModel) {
+    public java.lang.String VisitController.findVisitsByDescriptionLikeForm(Model uiModel) {
         return "visits/findVisitsByDescriptionLike";
     }
     
     @RequestMapping(params = "find=ByDescriptionLike", method = RequestMethod.GET)
-    public String VisitController.findVisitsByDescriptionLike(@RequestParam("description") String description, Model uiModel) {
+    public java.lang.String VisitController.findVisitsByDescriptionLike(@RequestParam("description") java.lang.String description, Model uiModel) {
         uiModel.addAttribute("visits", Visit.findVisitsByDescriptionLike(description).getResultList());
         return "visits/list";
     }
     
     @RequestMapping(params = { "find=ByVisitDateBetween", "form" }, method = RequestMethod.GET)
-    public String VisitController.findVisitsByVisitDateBetweenForm(Model uiModel) {
+    public java.lang.String VisitController.findVisitsByVisitDateBetweenForm(Model uiModel) {
         addDateTimeFormatPatterns(uiModel);
         return "visits/findVisitsByVisitDateBetween";
     }
     
     @RequestMapping(params = "find=ByVisitDateBetween", method = RequestMethod.GET)
-    public String VisitController.findVisitsByVisitDateBetween(@RequestParam("minVisitDate") @DateTimeFormat(style = "M-") Date minVisitDate, @RequestParam("maxVisitDate") @DateTimeFormat(style = "M-") Date maxVisitDate, Model uiModel) {
+    public java.lang.String VisitController.findVisitsByVisitDateBetween(@RequestParam("minVisitDate") @DateTimeFormat(style = "M-") Date minVisitDate, @RequestParam("maxVisitDate") @DateTimeFormat(style = "M-") Date maxVisitDate, Model uiModel) {
         uiModel.addAttribute("visits", Visit.findVisitsByVisitDateBetween(minVisitDate, maxVisitDate).getResultList());
         addDateTimeFormatPatterns(uiModel);
         return "visits/list";
