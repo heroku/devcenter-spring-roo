@@ -3,8 +3,6 @@
 
 package com.springsource.petclinic.domain;
 
-import java.lang.Integer;
-import java.lang.Long;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,25 +17,25 @@ privileged aspect AbstractPerson_Roo_Jpa_Entity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
-    private Long AbstractPerson.id;
+    private java.lang.Long AbstractPerson.id;
     
     @Version
     @Column(name = "version")
-    private Integer AbstractPerson.version;
+    private java.lang.Integer AbstractPerson.version;
     
-    public Long AbstractPerson.getId() {
+    public java.lang.Long AbstractPerson.getId() {
         return this.id;
     }
     
-    public void AbstractPerson.setId(Long id) {
+    public void AbstractPerson.setId(java.lang.Long id) {
         this.id = id;
     }
     
-    public Integer AbstractPerson.getVersion() {
+    public java.lang.Integer AbstractPerson.getVersion() {
         return this.version;
     }
     
-    public void AbstractPerson.setVersion(Integer version) {
+    public void AbstractPerson.setVersion(java.lang.Integer version) {
         this.version = version;
     }
     

@@ -8,7 +8,6 @@ import com.springsource.petclinic.domain.PetDataOnDemand;
 import com.springsource.petclinic.domain.Vet;
 import com.springsource.petclinic.domain.VetDataOnDemand;
 import com.springsource.petclinic.domain.Visit;
-import java.lang.String;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Date;

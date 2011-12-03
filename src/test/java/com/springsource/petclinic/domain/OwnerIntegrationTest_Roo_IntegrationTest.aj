@@ -4,8 +4,6 @@
 package com.springsource.petclinic.domain;
 
 import com.springsource.petclinic.domain.OwnerDataOnDemand;
-import java.lang.Integer;
-import java.lang.Long;
 import java.util.List;
 import org.junit.Assert;
 import org.junit.Test;

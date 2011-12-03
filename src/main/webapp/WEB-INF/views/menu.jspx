@@ -7,10 +7,6 @@
             <menu:item id="i_vet_new" messageCode="global_menu_new" url="/vets?form" z="7SPL5mtz1KF01GZo+EnUISwt3oM="/>
             <menu:item id="i_vet_list" messageCode="global_menu_list" url="/vets?page=1&amp;size=${empty param.size ? 10 : param.size}" z="wUkAsMbGxBlsNtUKrxD1iEBstxA="/>
         </menu:category>
-        <menu:category id="c_owner" z="Zth5UxnSe51JiEP87JF7+ETwetY=">
-            <menu:item id="i_owner_new" messageCode="global_menu_new" url="/owners?form" z="/hKA4qUEs5O+bA2Hcejn43+TrE0="/>
-            <menu:item id="i_owner_list" messageCode="global_menu_list" url="/owners?page=1&amp;size=${empty param.size ? 10 : param.size}" z="G3vxhcyuViA2OtRCffsEWTpUSwY="/>
-        </menu:category>
         <menu:category id="c_pet" z="DRAsrgINsuHtkm0yg5t8/m7TNIY=">
             <menu:item id="i_pet_new" messageCode="global_menu_new" url="/pets?form" z="SwmuMoL7UBbDU/gqHy+t5Tl0Ins="/>
             <menu:item id="i_pet_list" messageCode="global_menu_list" url="/pets?page=1&amp;size=${empty param.size ? 10 : param.size}" z="mOobFCWrN51ciSswf5mwRVyM21s="/>
@@ -25,6 +21,10 @@
             <menu:item id="fi_visit_descriptionandvisitdate" messageCode="global_menu_find" url="/visits?find=ByDescriptionAndVisitDate&amp;form" z="3sKRLY4UVEeJbr2SZfFJH7jfZgY="/>
             <menu:item id="fi_visit_descriptionlike" messageCode="global_menu_find" url="/visits?find=ByDescriptionLike&amp;form" z="hmNOhf9btkbiGyxFpwmDPVPiGIo="/>
             <menu:item id="fi_visit_visitdatebetween" messageCode="global_menu_find" url="/visits?find=ByVisitDateBetween&amp;form" z="uwXjqKkUEUtsDmNKJ+WTTuA7UyE="/>
+        </menu:category>
+        <menu:category id="c_owner" z="Zth5UxnSe51JiEP87JF7+ETwetY=">
+            <menu:item id="i_owner_new" messageCode="global_menu_new" url="/owners?form" z="/hKA4qUEs5O+bA2Hcejn43+TrE0="/>
+            <menu:item id="i_owner_list" messageCode="global_menu_list" url="/owners?page=1&amp;size=${empty param.size ? 10 : param.size}" z="G3vxhcyuViA2OtRCffsEWTpUSwY="/>
         </menu:category>
         <menu:category id="c_seleniumtests" z="PPLMd2yNB6/LSbjIWogAacRPU+Q=">
             <menu:item id="si_seleniumtests_test" messageCode="selenium_menu_test_suite" url="/resources/selenium/test-suite.xhtml" z="wwunW/IPDcunN97u41MvMJZQ2to="/>

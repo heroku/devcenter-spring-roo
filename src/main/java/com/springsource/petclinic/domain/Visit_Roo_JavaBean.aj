@@ -5,16 +5,15 @@ package com.springsource.petclinic.domain;
 
 import com.springsource.petclinic.domain.Pet;
 import com.springsource.petclinic.domain.Vet;
-import java.lang.String;
 import java.util.Date;
 
 privileged aspect Visit_Roo_JavaBean {
     
-    public String Visit.getDescription() {
+    public java.lang.String Visit.getDescription() {
         return this.description;
     }
     
-    public void Visit.setDescription(String description) {
+    public void Visit.setDescription(java.lang.String description) {
         this.description = description;
     }
     
