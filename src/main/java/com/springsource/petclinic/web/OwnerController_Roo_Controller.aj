@@ -6,9 +6,6 @@ package com.springsource.petclinic.web;
 import com.springsource.petclinic.domain.Owner;
 import com.springsource.petclinic.domain.Pet;
 import java.io.UnsupportedEncodingException;
-import java.lang.Integer;
-import java.lang.Long;
-import java.lang.String;
 import java.util.Collection;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -27,7 +24,7 @@ import org.springframework.web.util.WebUtils;
 privileged aspect OwnerController_Roo_Controller {
     
     @RequestMapping(method = RequestMethod.POST)
-    public String OwnerController.create(@Valid Owner owner, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
+    public java.lang.String OwnerController.create(@Valid Owner owner, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
         if (bindingResult.hasErrors()) {
             uiModel.addAttribute("owner", owner);
             addDateTimeFormatPatterns(uiModel);
@@ -39,14 +36,14 @@ privileged aspect OwnerController_Roo_Controller {
     }
     
     @RequestMapping(params = "form", method = RequestMethod.GET)
-    public String OwnerController.createForm(Model uiModel) {
+    public java.lang.String OwnerController.createForm(Model uiModel) {
         uiModel.addAttribute("owner", new Owner());
         addDateTimeFormatPatterns(uiModel);
         return "owners/create";
     }
     
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public String OwnerController.show(@PathVariable("id") Long id, Model uiModel) {
+    public java.lang.String OwnerController.show(@PathVariable("id") java.lang.Long id, Model uiModel) {
         addDateTimeFormatPatterns(uiModel);
         uiModel.addAttribute("owner", Owner.findOwner(id));
         uiModel.addAttribute("itemId", id);
@@ -54,7 +51,7 @@ privileged aspect OwnerController_Roo_Controller {
     }
     
     @RequestMapping(method = RequestMethod.GET)
-    public String OwnerController.list(@RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
+    public java.lang.String OwnerController.list(@RequestParam(value = "page", required = false) java.lang.Integer page, @RequestParam(value = "size", required = false) java.lang.Integer size, Model uiModel) {
         if (page != null || size != null) {
             int sizeNo = size == null ? 10 : size.intValue();
             final int firstResult = page == null ? 0 : (page.intValue() - 1) * sizeNo;
@@ -69,7 +66,7 @@ privileged aspect OwnerController_Roo_Controller {
     }
     
     @RequestMapping(method = RequestMethod.PUT)
-    public String OwnerController.update(@Valid Owner owner, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
+    public java.lang.String OwnerController.update(@Valid Owner owner, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
         if (bindingResult.hasErrors()) {
             uiModel.addAttribute("owner", owner);
             addDateTimeFormatPatterns(uiModel);
@@ -81,14 +78,14 @@ privileged aspect OwnerController_Roo_Controller {
     }
     
     @RequestMapping(value = "/{id}", params = "form", method = RequestMethod.GET)
-    public String OwnerController.updateForm(@PathVariable("id") Long id, Model uiModel) {
+    public java.lang.String OwnerController.updateForm(@PathVariable("id") java.lang.Long id, Model uiModel) {
         uiModel.addAttribute("owner", Owner.findOwner(id));
         addDateTimeFormatPatterns(uiModel);
         return "owners/update";
     }
     
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public String OwnerController.delete(@PathVariable("id") Long id, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
+    public java.lang.String OwnerController.delete(@PathVariable("id") java.lang.Long id, @RequestParam(value = "page", required = false) java.lang.Integer page, @RequestParam(value = "size", required = false) java.lang.Integer size, Model uiModel) {
         Owner owner = Owner.findOwner(id);
         owner.remove();
         uiModel.asMap().clear();
@@ -111,15 +108,14 @@ privileged aspect OwnerController_Roo_Controller {
         uiModel.addAttribute("owner_birthday_date_format", DateTimeFormat.patternForStyle("M-", LocaleContextHolder.getLocale()));
     }
     
-    String OwnerController.encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {
+    java.lang.String OwnerController.encodeUrlPathSegment(java.lang.String pathSegment, HttpServletRequest httpServletRequest) {
         String enc = httpServletRequest.getCharacterEncoding();
         if (enc == null) {
             enc = WebUtils.DEFAULT_CHARACTER_ENCODING;
         }
         try {
             pathSegment = UriUtils.encodePathSegment(pathSegment, enc);
-        }
-        catch (UnsupportedEncodingException uee) {}
+        } catch (UnsupportedEncodingException uee) {}
         return pathSegment;
     }
     

@@ -4,11 +4,10 @@
 package com.springsource.petclinic.domain;
 
 import com.springsource.petclinic.domain.Vet;
-import java.lang.Long;
 import java.util.List;
 import org.springframework.transaction.annotation.Transactional;
 
-privileged aspect Vet_Roo_Entity {
+privileged aspect Vet_Roo_Jpa_ActiveRecord {
     
     @Transactional
     public Vet Vet.merge() {
@@ -26,7 +25,7 @@ privileged aspect Vet_Roo_Entity {
         return entityManager().createQuery("SELECT o FROM Vet o", Vet.class).getResultList();
     }
     
-    public static Vet Vet.findVet(Long id) {
+    public static Vet Vet.findVet(java.lang.Long id) {
         if (id == null) return null;
         return entityManager().find(Vet.class, id);
     }

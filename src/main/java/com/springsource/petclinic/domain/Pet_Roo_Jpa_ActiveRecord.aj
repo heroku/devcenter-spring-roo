@@ -3,76 +3,75 @@
 
 package com.springsource.petclinic.domain;
 
-import com.springsource.petclinic.domain.Visit;
-import java.lang.Long;
+import com.springsource.petclinic.domain.Pet;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import org.springframework.transaction.annotation.Transactional;
 
-privileged aspect Visit_Roo_Entity {
+privileged aspect Pet_Roo_Jpa_ActiveRecord {
     
     @PersistenceContext
-    transient EntityManager Visit.entityManager;
+    transient EntityManager Pet.entityManager;
     
     @Transactional
-    public void Visit.persist() {
+    public void Pet.persist() {
         if (this.entityManager == null) this.entityManager = entityManager();
         this.entityManager.persist(this);
     }
     
     @Transactional
-    public void Visit.remove() {
+    public void Pet.remove() {
         if (this.entityManager == null) this.entityManager = entityManager();
         if (this.entityManager.contains(this)) {
             this.entityManager.remove(this);
         } else {
-            Visit attached = Visit.findVisit(this.id);
+            Pet attached = Pet.findPet(this.id);
             this.entityManager.remove(attached);
         }
     }
     
     @Transactional
-    public void Visit.flush() {
+    public void Pet.flush() {
         if (this.entityManager == null) this.entityManager = entityManager();
         this.entityManager.flush();
     }
     
     @Transactional
-    public void Visit.clear() {
+    public void Pet.clear() {
         if (this.entityManager == null) this.entityManager = entityManager();
         this.entityManager.clear();
     }
     
     @Transactional
-    public Visit Visit.merge() {
+    public Pet Pet.merge() {
         if (this.entityManager == null) this.entityManager = entityManager();
-        Visit merged = this.entityManager.merge(this);
+        Pet merged = this.entityManager.merge(this);
         this.entityManager.flush();
         return merged;
     }
     
-    public static final EntityManager Visit.entityManager() {
-        EntityManager em = new Visit().entityManager;
+    public static final EntityManager Pet.entityManager() {
+        EntityManager em = new Pet().entityManager;
         if (em == null) throw new IllegalStateException("Entity manager has not been injected (is the Spring Aspects JAR configured as an AJC/AJDT aspects library?)");
         return em;
     }
     
-    public static long Visit.countVisits() {
-        return entityManager().createQuery("SELECT COUNT(o) FROM Visit o", Long.class).getSingleResult();
+    public static long Pet.countPets() {
+        return entityManager().createQuery("SELECT COUNT(o) FROM Pet o", Long.class).getSingleResult();
     }
     
-    public static List<Visit> Visit.findAllVisits() {
-        return entityManager().createQuery("SELECT o FROM Visit o", Visit.class).getResultList();
+    public static List<Pet> Pet.findAllPets() {
+        return entityManager().createQuery("SELECT o FROM Pet o", Pet.class).getResultList();
     }
     
-    public static Visit Visit.findVisit(Long id) {
+    public static Pet Pet.findPet(java.lang.Long id) {
         if (id == null) return null;
-        return entityManager().find(Visit.class, id);
+        return entityManager().find(Pet.class, id);
     }
     
-    public static List<Visit> Visit.findVisitEntries(int firstResult, int maxResults) {
-        return entityManager().createQuery("SELECT o FROM Visit o", Visit.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
+    public static List<Pet> Pet.findPetEntries(int firstResult, int maxResults) {
+        return entityManager().createQuery("SELECT o FROM Pet o", Pet.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
     }
     
 }

@@ -7,9 +7,6 @@ import com.springsource.petclinic.domain.Owner;
 import com.springsource.petclinic.domain.Pet;
 import com.springsource.petclinic.reference.PetType;
 import java.io.UnsupportedEncodingException;
-import java.lang.Integer;
-import java.lang.Long;
-import java.lang.String;
 import java.util.Arrays;
 import java.util.Collection;
 import javax.servlet.http.HttpServletRequest;
@@ -27,7 +24,7 @@ import org.springframework.web.util.WebUtils;
 privileged aspect PetController_Roo_Controller {
     
     @RequestMapping(method = RequestMethod.POST)
-    public String PetController.create(@Valid Pet pet, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
+    public java.lang.String PetController.create(@Valid Pet pet, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
         if (bindingResult.hasErrors()) {
             uiModel.addAttribute("pet", pet);
             return "pets/create";
@@ -38,20 +35,20 @@ privileged aspect PetController_Roo_Controller {
     }
     
     @RequestMapping(params = "form", method = RequestMethod.GET)
-    public String PetController.createForm(Model uiModel) {
+    public java.lang.String PetController.createForm(Model uiModel) {
         uiModel.addAttribute("pet", new Pet());
         return "pets/create";
     }
     
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public String PetController.show(@PathVariable("id") Long id, Model uiModel) {
+    public java.lang.String PetController.show(@PathVariable("id") java.lang.Long id, Model uiModel) {
         uiModel.addAttribute("pet", Pet.findPet(id));
         uiModel.addAttribute("itemId", id);
         return "pets/show";
     }
     
     @RequestMapping(method = RequestMethod.GET)
-    public String PetController.list(@RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
+    public java.lang.String PetController.list(@RequestParam(value = "page", required = false) java.lang.Integer page, @RequestParam(value = "size", required = false) java.lang.Integer size, Model uiModel) {
         if (page != null || size != null) {
             int sizeNo = size == null ? 10 : size.intValue();
             final int firstResult = page == null ? 0 : (page.intValue() - 1) * sizeNo;
@@ -65,7 +62,7 @@ privileged aspect PetController_Roo_Controller {
     }
     
     @RequestMapping(method = RequestMethod.PUT)
-    public String PetController.update(@Valid Pet pet, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
+    public java.lang.String PetController.update(@Valid Pet pet, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
         if (bindingResult.hasErrors()) {
             uiModel.addAttribute("pet", pet);
             return "pets/update";
@@ -76,13 +73,13 @@ privileged aspect PetController_Roo_Controller {
     }
     
     @RequestMapping(value = "/{id}", params = "form", method = RequestMethod.GET)
-    public String PetController.updateForm(@PathVariable("id") Long id, Model uiModel) {
+    public java.lang.String PetController.updateForm(@PathVariable("id") java.lang.Long id, Model uiModel) {
         uiModel.addAttribute("pet", Pet.findPet(id));
         return "pets/update";
     }
     
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public String PetController.delete(@PathVariable("id") Long id, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
+    public java.lang.String PetController.delete(@PathVariable("id") java.lang.Long id, @RequestParam(value = "page", required = false) java.lang.Integer page, @RequestParam(value = "size", required = false) java.lang.Integer size, Model uiModel) {
         Pet pet = Pet.findPet(id);
         pet.remove();
         uiModel.asMap().clear();
@@ -106,15 +103,14 @@ privileged aspect PetController_Roo_Controller {
         return Arrays.asList(PetType.class.getEnumConstants());
     }
     
-    String PetController.encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {
+    java.lang.String PetController.encodeUrlPathSegment(java.lang.String pathSegment, HttpServletRequest httpServletRequest) {
         String enc = httpServletRequest.getCharacterEncoding();
         if (enc == null) {
             enc = WebUtils.DEFAULT_CHARACTER_ENCODING;
         }
         try {
             pathSegment = UriUtils.encodePathSegment(pathSegment, enc);
-        }
-        catch (UnsupportedEncodingException uee) {}
+        } catch (UnsupportedEncodingException uee) {}
         return pathSegment;
     }
     

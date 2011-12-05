@@ -5,7 +5,6 @@ package com.springsource.petclinic.domain;
 
 import com.springsource.petclinic.domain.Vet;
 import com.springsource.petclinic.reference.Specialty;
-import java.lang.String;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -63,7 +62,7 @@ privileged aspect VetDataOnDemand_Roo_DataOnDemand {
     }
     
     public void VetDataOnDemand.setEmail(Vet obj, int index) {
-        String email = "email_" + index;
+        String email = "foo" + index + "@bar.com";
         if (email.length() > 30) {
             email = email.substring(0, 30);
         }

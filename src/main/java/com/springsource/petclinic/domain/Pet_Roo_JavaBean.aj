@@ -5,8 +5,6 @@ package com.springsource.petclinic.domain;
 
 import com.springsource.petclinic.domain.Owner;
 import com.springsource.petclinic.reference.PetType;
-import java.lang.Float;
-import java.lang.String;
 
 privileged aspect Pet_Roo_JavaBean {
     
@@ -18,19 +16,19 @@ privileged aspect Pet_Roo_JavaBean {
         this.sendReminders = sendReminders;
     }
     
-    public String Pet.getName() {
+    public java.lang.String Pet.getName() {
         return this.name;
     }
     
-    public void Pet.setName(String name) {
+    public void Pet.setName(java.lang.String name) {
         this.name = name;
     }
     
-    public Float Pet.getWeight() {
+    public java.lang.Float Pet.getWeight() {
         return this.weight;
     }
     
-    public void Pet.setWeight(Float weight) {
+    public void Pet.setWeight(java.lang.Float weight) {
         this.weight = weight;
     }
     

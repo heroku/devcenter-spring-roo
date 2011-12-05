@@ -4,13 +4,12 @@
 package com.springsource.petclinic.domain;
 
 import com.springsource.petclinic.domain.AbstractPerson;
-import java.lang.Long;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import org.springframework.transaction.annotation.Transactional;
 
-privileged aspect AbstractPerson_Roo_Entity {
+privileged aspect AbstractPerson_Roo_Jpa_ActiveRecord {
     
     @PersistenceContext
     transient EntityManager AbstractPerson.entityManager;
@@ -67,7 +66,7 @@ privileged aspect AbstractPerson_Roo_Entity {
         return entityManager().createQuery("SELECT o FROM AbstractPerson o", AbstractPerson.class).getResultList();
     }
     
-    public static AbstractPerson AbstractPerson.findAbstractPerson(Long id) {
+    public static AbstractPerson AbstractPerson.findAbstractPerson(java.lang.Long id) {
         if (id == null) return null;
         return entityManager().find(AbstractPerson.class, id);
     }

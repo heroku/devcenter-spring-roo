@@ -4,11 +4,10 @@
 package com.springsource.petclinic.domain;
 
 import com.springsource.petclinic.domain.Owner;
-import java.lang.Long;
 import java.util.List;
 import org.springframework.transaction.annotation.Transactional;
 
-privileged aspect Owner_Roo_Entity {
+privileged aspect Owner_Roo_Jpa_ActiveRecord {
     
     @Transactional
     public Owner Owner.merge() {
@@ -26,7 +25,7 @@ privileged aspect Owner_Roo_Entity {
         return entityManager().createQuery("SELECT o FROM Owner o", Owner.class).getResultList();
     }
     
-    public static Owner Owner.findOwner(Long id) {
+    public static Owner Owner.findOwner(java.lang.Long id) {
         if (id == null) return null;
         return entityManager().find(Owner.class, id);
     }
